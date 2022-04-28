@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main ()
+{
+float val,avrg,sum=0,sum2=0,ss,sm;
+int l,c=0;
+FILE*read;
+read=fopen("read.txt","r");
+l=fscanf(read,"%f",&val);
+if (l==-1)
+{printf("the file is empty");
+return 1;}
+sum=sum+val;
+c++;
+while (l==1)
+{
+l=fscanf(read,"%f",&val);
+if (l==1)
+{c++;
+sum=sum+val;
+}
+}
+fclose(read);
+avrg=(sum/c);
+read=fopen("read.txt","r");
+l=fscanf(read,"%f",&val);
+sum2=sum2+pow((val-avrg),2);
+while (l==1)
+{
+l=fscanf(read,"%f",&val);
+if (l==1)
+{
+  sum2=sum2+pow((val-avrg),2);
+}
+}
+fclose(read);
+ss=sqrt((sum2)/(c-1));
+sm=ss/sqrt(c);
+read=fopen("read.txt","a");
+printf("check the file");
+fprintf(read,"\n\n\nthe avarage is:%f\nsigma s=%f\nsigma m=%f\nN=%d\n\n\nDon't forget to make sm 1sf\nif you want to another calculation pls clear the last one",avrg,ss,sm,c);
+    return 0;
+}
+
+
